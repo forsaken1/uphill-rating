@@ -3,6 +3,7 @@ defmodule UphillRating.Repo.Migrations.CreateRace do
 
   def change do
     create table(:races) do
+      add :name, :string
       add :information, :text
       add :climb, :integer
       timestamps

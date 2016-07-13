@@ -2,7 +2,7 @@ defmodule UphillRating.RaceControllerTest do
   use UphillRating.ConnCase
 
   alias UphillRating.Race
-  @valid_attrs %{climb: 42, information: "some content"}
+  @valid_attrs %{name: "Uphill", climb: 42, information: "some content"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do

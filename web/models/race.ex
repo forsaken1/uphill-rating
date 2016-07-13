@@ -2,13 +2,14 @@ defmodule UphillRating.Race do
   use UphillRating.Web, :model
 
   schema "races" do
+    field :name, :string
     field :information, :string
     field :climb, :integer
 
     timestamps
   end
 
-  @required_fields ~w(information climb)
+  @required_fields ~w(name information climb)
   @optional_fields ~w()
 
   @doc """

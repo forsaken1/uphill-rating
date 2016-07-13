@@ -3,7 +3,7 @@ defmodule UphillRating.RaceTest do
 
   alias UphillRating.Race
 
-  @valid_attrs %{climb: 42, information: "some content"}
+  @valid_attrs %{name: "Uphill", climb: 42, information: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
