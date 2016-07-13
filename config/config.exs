@@ -27,3 +27,15 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :ex_admin,
+  repo: UphillRating.Repo,
+  module: UphillRating,
+  modules: [
+    UphillRating.ExAdmin.Dashboard,
+    UphillRating.ExAdmin.Race,
+    UphillRating.ExAdmin.Bicyclist,
+    UphillRating.ExAdmin.BicyclistRace,
+  ]
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}

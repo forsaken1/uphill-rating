@@ -1,5 +1,6 @@
 defmodule UphillRating.Router do
   use UphillRating.Web, :router
+  use ExAdmin.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -20,6 +21,12 @@ defmodule UphillRating.Router do
     resources "/bicyclists", BicyclistController
     resources "/races", RaceController
     resources "/bicyclist_races", BicyclistRaceController
+  end
+
+  # setup the ExAdmin routes on /admin
+  scope "/admin", ExAdmin do
+    pipe_through :browser
+    admin_routes
   end
 
   # Other scopes may use custom stacks.
