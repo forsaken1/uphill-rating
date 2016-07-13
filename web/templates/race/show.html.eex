@@ -1,0 +1,18 @@
+<h2>Show race</h2>
+
+<ul>
+
+  <li>
+    <strong>Information:</strong>
+    <%= @race.information %>
+  </li>
+
+  <li>
+    <strong>Climb:</strong>
+    <%= @race.climb %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: race_path(@conn, :edit, @race) %>
+<%= link "Back", to: race_path(@conn, :index) %>

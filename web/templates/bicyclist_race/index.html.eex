@@ -1,0 +1,36 @@
+<h2>Listing bicyclist races</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Bicyclist</th>
+      <th>Race</th>
+      <th>Time</th>
+      <th>Lag</th>
+      <th>Points</th>
+      <th>Place</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for bicyclist_race <- @bicyclist_races do %>
+    <tr>
+      <td><%= bicyclist_race.bicyclist_id %></td>
+      <td><%= bicyclist_race.race_id %></td>
+      <td><%= bicyclist_race.time %></td>
+      <td><%= bicyclist_race.lag %></td>
+      <td><%= bicyclist_race.points %></td>
+      <td><%= bicyclist_race.place %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: bicyclist_race_path(@conn, :show, bicyclist_race), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: bicyclist_race_path(@conn, :edit, bicyclist_race), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: bicyclist_race_path(@conn, :delete, bicyclist_race), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New bicyclist race", to: bicyclist_race_path(@conn, :new) %>

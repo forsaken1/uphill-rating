@@ -1,0 +1,23 @@
+<h2>Show bicyclist</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @bicyclist.name %>
+  </li>
+
+  <li>
+    <strong>Year:</strong>
+    <%= @bicyclist.year %>
+  </li>
+
+  <li>
+    <strong>Sex:</strong>
+    <%= @bicyclist.sex %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: bicyclist_path(@conn, :edit, @bicyclist) %>
+<%= link "Back", to: bicyclist_path(@conn, :index) %>
