@@ -1,36 +1,29 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Фамилия, Имя</th>
+      <th>Год</th>
+      <th>Команда</th>
+      <th>Пол</th>
+      <th>Время</th>
+      <th>Отставание</th>
+      <th>Очки</th>
+      <th>Место</th>
+    </tr>
+  </thead>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="http://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
-</div>
+  <tbody>
+    <%= for bicyclist_race <- @bicyclist_races do %>
+      <tr>
+        <td><%= bicyclist_race.bicyclist.name %></td>
+        <td><%= bicyclist_race.bicyclist.year %></td>
+        <td><%= bicyclist_race.bicyclist.sex %></td>
+        <td>-</td>
+        <td><%= bicyclist_race.time %></td>
+        <td><%= bicyclist_race.lag %></td>
+        <td><%= bicyclist_race.points %></td>
+        <td><%= bicyclist_race.place %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

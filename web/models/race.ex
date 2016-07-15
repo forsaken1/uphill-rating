@@ -9,7 +9,7 @@ defmodule UphillRating.Race do
     timestamps
   end
 
-  @required_fields ~w(name information climb)
+  @required_fields ~w(name climb)
   @optional_fields ~w()
 
   @doc """

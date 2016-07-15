@@ -18,9 +18,7 @@ defmodule UphillRating.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/bicyclists", BicyclistController
-    resources "/races", RaceController
-    resources "/bicyclist_races", BicyclistRaceController
+    get "/rating", PageController, :rating
   end
 
   # setup the ExAdmin routes on /admin
