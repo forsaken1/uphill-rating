@@ -5,7 +5,7 @@ defmodule UphillRating.Race do
     field :name, :string
     field :information, :string
     field :climb, :integer
-
+    has_many :bicyclist_races, UphillRating.BicyclistRace
     timestamps
   end
 

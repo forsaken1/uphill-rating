@@ -12,7 +12,7 @@ defmodule UphillRating.BicyclistRace do
     timestamps
   end
 
-  @required_fields ~w(time lag)
+  @required_fields ~w(time lag bicyclist_id race_id)
   @optional_fields ~w()
 
   @doc """

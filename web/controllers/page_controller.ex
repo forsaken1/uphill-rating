@@ -1,11 +1,11 @@
 defmodule UphillRating.PageController do
   use UphillRating.Web, :controller
 
-  alias UphillRating.BicyclistRace
+  alias UphillRating.Race
 
   def index(conn, _params) do
-    bicyclist_races = BicyclistRace |> Repo.all |> Repo.preload([:bicyclist])
-    render conn, "index.html", bicyclist_races: bicyclist_races
+    races = Race |> Repo.all |> Repo.preload([:bicyclist_races, bicyclist_races: [:bicyclist] ])
+    render conn, "index.html", races: races
   end
 
   def rating(conn, _params) do
