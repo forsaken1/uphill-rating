@@ -1,5 +1,6 @@
 <%= for race <- @races do %>
   <h3><%= race.name %></h1>
+  <pre><%= race.information %></pre>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
