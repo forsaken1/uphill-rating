@@ -6,7 +6,7 @@ defmodule UphillRating.ExAdmin.Bicyclist do
       inputs do
         input bicycle, :name
         input bicycle, :year
-        input bicycle, :sex, collection: [ "Male": "Male", "Female": "Female" ]
+        input bicycle, :sex, collection: [ "Male", "Female" ]
       end
     end
   end
