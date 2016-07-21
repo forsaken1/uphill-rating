@@ -33,8 +33,9 @@ config :ex_admin,
   module: UphillRating,
   modules: [
     UphillRating.ExAdmin.Dashboard,
-    UphillRating.ExAdmin.Race,
+    UphillRating.ExAdmin.Team,
     UphillRating.ExAdmin.Bicyclist,
+    UphillRating.ExAdmin.Race,
     UphillRating.ExAdmin.BicyclistRace,
   ]
 

@@ -21,7 +21,7 @@
           <td><%= bicyclist_race.bicyclist.name %></td>
           <td><%= bicyclist_race.bicyclist.year %></td>
           <td><%= bicyclist_race.bicyclist.sex %></td>
-          <td>-</td>
+          <td><%= bicyclist_race.team.name %></td>
           <td><%= bicyclist_race.time %></td>
           <td><%= bicyclist_race.lag %></td>
           <td><%= bicyclist_race.points %></td>

@@ -8,11 +8,12 @@ defmodule UphillRating.BicyclistRace do
     field :place, :integer
     belongs_to :bicyclist, UphillRating.Bicyclist
     belongs_to :race, UphillRating.Race
+    belongs_to :team, UphillRating.Team
 
     timestamps
   end
 
-  @required_fields ~w(time lag bicyclist_id race_id)
+  @required_fields ~w(time lag bicyclist_id race_id team_id)
   @optional_fields ~w(place points)
 
   @doc """
