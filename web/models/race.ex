@@ -22,4 +22,8 @@ defmodule UphillRating.Race do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def climb_coeff climb do
+    climb / 100.0
+  end
 end

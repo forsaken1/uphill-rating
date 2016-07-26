@@ -21,9 +21,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="<%= active_class(@conn, page_path(@conn, :index)) %>"><a href="<%= page_path(@conn, :index) %>">Результаты</a></li>
-            <li class="<%= active_class(@conn, page_path(@conn, :rating)) %>"><a href="<%= page_path(@conn, :rating) %>">Рейтинг команд</a></li>
-            <li><a href="<%= page_path(@conn, :rating) %>">Рейтинг личный</a></li>
-            <li><a href="<%= page_path(@conn, :rating) %>">Команды</a></li>
+            <li class="<%= active_class(@conn, page_path(@conn, :rating)) %>"><a href="<%= page_path(@conn, :rating) %>">Рейтинг личный</a></li>
+            <li class="<%= active_class(@conn, page_path(@conn, :rating_teams)) %>"><a href="<%= page_path(@conn, :rating_teams) %>">Рейтинг команд</a></li>
           </ul>
         </div>
       </div>

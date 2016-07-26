@@ -5,6 +5,7 @@ defmodule UphillRating.Bicyclist do
     field :name, :string
     field :year, :string
     field :sex, :string
+    has_many :bicyclist_races, UphillRating.BicyclistRace
 
     timestamps
   end

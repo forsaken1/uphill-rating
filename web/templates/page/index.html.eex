@@ -1,5 +1,5 @@
 <%= for race <- @races do %>
-  <h3><%= race.name %></h1>
+  <h3><%= race.name %></h3>
   <pre><%= race.information %></pre>
   <table class="table table-bordered table-striped">
     <thead>
@@ -20,7 +20,7 @@
         <tr>
           <td><%= bicyclist_race.bicyclist.name %></td>
           <td><%= bicyclist_race.bicyclist.year %></td>
-          <td><%= bicyclist_race.bicyclist.sex %></td>
+          <td><%= if bicyclist_race.bicyclist.sex == "Male" do "М" else "Ж" end %></td>
           <td><%= bicyclist_race.team.name %></td>
           <td><%= bicyclist_race.time %></td>
           <td><%= bicyclist_race.lag %></td>
