@@ -29,13 +29,13 @@
         <td><%= Enum.at(@bicyclists, i).name %></td>
 
         <%= for race <- @races do %>
-          <% map = Enum.find(Enum.at(@bicyclists, i).bicyclist_races, fn(x) -> x.race_id == race.id end ) %>
-          <td><%= if map do map.points end %></td>
-          <td><%= if map do UphillRating.Race.climb_coeff race.climb end %></td>
-          <td><%= if map do map.points * UphillRating.Race.climb_coeff race.climb end %></td>
+          <% bicyclist_race = Enum.find(Enum.at(@bicyclists, i).bicyclist_races, fn(x) -> x.race_id == race.id end ) %>
+          <td><%= if bicyclist_race do bicyclist_race.points end %></td>
+          <td><%= if bicyclist_race do UphillRating.Race.climb_coeff race.climb end %></td>
+          <td><%= if bicyclist_race do bicyclist_race.result_points end %></td>
         <% end %>
 
-        <td><%= Enum.reduce(Enum.at(@bicyclists, i).bicyclist_races, 0, fn(x, acc) -> x.points + acc end) %></td>
+        <td><%= Enum.reduce(Enum.at(@bicyclists, i).bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) %></td>
         <td><%= i + 1 %></td>
       </tr>
     <% end %>

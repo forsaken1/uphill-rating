@@ -6,6 +6,7 @@ defmodule UphillRating.BicyclistRace do
     field :lag, Ecto.Time
     field :points, :integer
     field :place, :integer
+    field :result_points, :float
     belongs_to :bicyclist, UphillRating.Bicyclist
     belongs_to :race, UphillRating.Race
     belongs_to :team, UphillRating.Team
@@ -14,7 +15,7 @@ defmodule UphillRating.BicyclistRace do
   end
 
   @required_fields ~w(time lag bicyclist_id race_id team_id)
-  @optional_fields ~w(place points)
+  @optional_fields ~w(place points result_points)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

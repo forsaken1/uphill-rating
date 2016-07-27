@@ -31,10 +31,11 @@ defmodule UphillRating.ExAdmin.Race do
       bicyclist_races_length = length(bicyclist_races)
 
       for i <- 0..(bicyclist_races_length - 1) do
+        points = calculate_points(i, bicyclist_races_length)
         Repo.update(
           BicyclistRace.changeset(
             Enum.at(bicyclist_races, i),
-            %{place: i + 1, points: calculate_points(i, bicyclist_races_length)}
+            %{place: i + 1, points: points, result_points: points * Race.climb_coeff(race.climb)}
           )
         )
       end
