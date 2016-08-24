@@ -6,11 +6,12 @@ defmodule UphillRating.Bicyclist do
     field :year, :string
     field :sex, :string
     has_many :bicyclist_races, UphillRating.BicyclistRace
+    belongs_to :team, UphillRating.Team
 
     timestamps
   end
 
-  @required_fields ~w(name year sex)
+  @required_fields ~w(name year sex team_id)
   @optional_fields ~w()
 
   @doc """
