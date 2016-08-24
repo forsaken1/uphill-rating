@@ -6,6 +6,7 @@ defmodule UphillRating.Repo.Migrations.CreateBicyclistRace do
       add :time, :time
       add :lag, :time
       add :points, :integer
+      add :result_points, :float
       add :place, :integer
       add :bicyclist_id, references(:bicyclists, on_delete: :nothing)
       add :race_id, references(:races, on_delete: :nothing)
