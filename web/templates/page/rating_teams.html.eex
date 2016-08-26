@@ -26,9 +26,9 @@
     <% teams = Enum.sort(@teams, &(Enum.reduce(&1.bicyclists, 0, fn(item, ac) -> ac + Enum.reduce(item.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) end) > Enum.reduce(&2.bicyclists, 0, fn(item, ac) -> ac + Enum.reduce(item.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) end))) %>
 
     <%= for i <- 0..length(teams) - 1 do %>
-      <tr><td colspan="100" align="center"><b><%= Enum.at(@teams, i).name %></b></td></tr>
+      <tr><td colspan="100" align="center"><b><%= Enum.at(teams, i).name %></b></td></tr>
 
-      <% bicyclists = Enum.sort(Enum.at(@teams, i).bicyclists, &(Enum.reduce(&1.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) > Enum.reduce(&2.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end))) %>
+      <% bicyclists = Enum.sort(Enum.at(teams, i).bicyclists, &(Enum.reduce(&1.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) > Enum.reduce(&2.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end))) %>
 
       <%= for j <- 0..length(bicyclists) - 1 do %>
         <tr>
