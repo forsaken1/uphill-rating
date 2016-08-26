@@ -39,7 +39,7 @@
             <% bicyclist_race = Enum.find(Enum.at(bicyclists, j).bicyclist_races, fn(x) -> x.race_id == race.id end ) %>
             <td><%= if bicyclist_race do bicyclist_race.points end %></td>
             <td><%= if bicyclist_race do UphillRating.Race.climb_coeff race.climb end %></td>
-            <td><%= if bicyclist_race do bicyclist_race.result_points end %></td>
+            <td><%= if bicyclist_race do Float.round(bicyclist_race.result_points, 2) end %></td>
           <% end %>
 
           <%= if j == 0 do %>
