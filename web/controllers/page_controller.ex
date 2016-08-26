@@ -19,7 +19,7 @@ defmodule UphillRating.PageController do
   end
 
   def rating_teams(conn, _params) do
-    teams = Team |> Repo.all |> Repo.preload([:bicyclist_races])
+    teams = Team |> Repo.all |> Repo.preload([bicyclists: [:bicyclist_races]])
     races = Race |> Repo.all
     render conn, "rating_teams.html", teams: teams, races: races
   end
