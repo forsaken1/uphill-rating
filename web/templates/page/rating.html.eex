@@ -23,19 +23,21 @@
   </thead>
 
   <tbody>
-    <%= for i <- 0..length(@bicyclists) - 1 do %>
+    <% bicyclists = Enum.sort(@bicyclists, &(Enum.reduce(&1.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) > Enum.reduce(&2.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end))) %>
+
+    <%= for i <- 0..length(bicyclists) - 1 do %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= Enum.at(@bicyclists, i).name %></td>
+        <td><%= Enum.at(bicyclists, i).name %></td>
 
         <%= for race <- @races do %>
-          <% bicyclist_race = Enum.find(Enum.at(@bicyclists, i).bicyclist_races, fn(x) -> x.race_id == race.id end ) %>
+          <% bicyclist_race = Enum.find(Enum.at(bicyclists, i).bicyclist_races, fn(x) -> x.race_id == race.id end ) %>
           <td><%= if bicyclist_race do bicyclist_race.points end %></td>
           <td><%= if bicyclist_race do UphillRating.Race.climb_coeff race.climb end %></td>
           <td><%= if bicyclist_race do bicyclist_race.result_points end %></td>
         <% end %>
 
-        <td><%= Enum.reduce(Enum.at(@bicyclists, i).bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) %></td>
+        <td><%= Enum.reduce(Enum.at(bicyclists, i).bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) %></td>
         <td><%= i + 1 %></td>
       </tr>
     <% end %>
