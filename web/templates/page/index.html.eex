@@ -16,8 +16,7 @@
     </thead>
 
     <tbody>
-      <% bicyclist_races = BicyclistRace |> Repo.all(from t in BicyclistRace, where: t.race_id == race.id) %>
-      <%= for bicyclist_race <- bicyclist_races do %>
+      <%= for bicyclist_race <- Enum.sort(race.bicyclist_races, &(&1.points > &2.points)) do %>
         <tr>
           <td><%= bicyclist_race.bicyclist.name %></td>
           <td><%= bicyclist_race.bicyclist.year %></td>
