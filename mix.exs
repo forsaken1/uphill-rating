@@ -31,13 +31,13 @@ defmodule UphillRating.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:phoenix, "~> 1.2"},
-     {:postgrex, ">= 0.0.0"},
+     {:postgrex, ">= 0.12.0"},
      {:phoenix_ecto, "~> 3.0.0"},
      {:phoenix_html, "~> 2.5"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:ex_admin, github: 'smpallen99/ex_admin'}]
+     {:ex_admin, "~> 0.8"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
