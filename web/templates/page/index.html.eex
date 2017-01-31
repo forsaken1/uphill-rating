@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-      <%= for bicyclist_race <- Enum.sort(race.bicyclist_races, &(&1.points > &2.points)) do %>
+      <%= for bicyclist_race <- race.bicyclist_races do %>
         <tr>
           <td><%= bicyclist_race.bicyclist.name %></td>
           <td><%= bicyclist_race.bicyclist.year %></td>

@@ -32,6 +32,11 @@ defmodule UphillRating.BicyclistRace do
     order_by: [asc: p.time]
   end
 
+  def ordered(query) do
+    from p in query,
+    order_by: [desc: p.points]
+  end
+
   def for_race(query, race) do
     from c in query,
      join: p in assoc(c, :race),
