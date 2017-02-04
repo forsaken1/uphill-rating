@@ -14,5 +14,6 @@ defmodule UphillRating.Repo.Migrations.CreateBicyclistRace do
     end
     create index(:bicyclist_races, [:bicyclist_id])
     create index(:bicyclist_races, [:race_id])
+    create index(:bicyclist_races, [:bicyclist_id, :race_id], unique: true)
   end
 end
