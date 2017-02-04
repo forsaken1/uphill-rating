@@ -3,6 +3,8 @@ defmodule UphillRating.PageController do
 
   import Ecto.Query
 
+  require IEx
+
   alias UphillRating.Team
   alias UphillRating.Race
   alias UphillRating.Bicyclist
@@ -20,7 +22,7 @@ defmodule UphillRating.PageController do
       group_by: b.id,
       order_by: [desc: sum(br.result_points)]
     bicyclist_ids = Enum.map bicyclists, fn (e) -> e[:id] end
-    bicyclist_races = BicyclistRace |> where([b], b.id in ^bicyclist_ids) |> Repo.all
+    bicyclist_races = BicyclistRace |> where([br], br.bicyclist_id in ^bicyclist_ids) |> Repo.all
     races = Race |> Repo.all
     render conn, "rating.html", bicyclists: bicyclists, races: races, bicyclist_races: bicyclist_races
   end
