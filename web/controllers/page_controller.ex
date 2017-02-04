@@ -1,6 +1,8 @@
 defmodule UphillRating.PageController do
   use UphillRating.Web, :controller
 
+  import Ecto.Query
+
   alias UphillRating.Team
   alias UphillRating.Race
   alias UphillRating.Bicyclist
@@ -12,13 +14,19 @@ defmodule UphillRating.PageController do
   end
 
   def rating(conn, _params) do
-    bicyclists = Bicyclist |> Repo.all |> Repo.preload([:bicyclist_races])
+    bicyclists = Repo.all from b in Bicyclist,
+      join: br in assoc(b, :bicyclist_races),
+      select: %{id: b.id, name: b.name, points: sum(br.result_points)},
+      group_by: b.id,
+      order_by: [desc: sum(br.result_points)]
+    bicyclist_ids = Enum.map bicyclists, fn (e) -> e[:id] end
+    bicyclist_races = BicyclistRace |> where([b], b.id in ^bicyclist_ids) |> Repo.all
     races = Race |> Repo.all
-    render conn, "rating.html", bicyclists: bicyclists, races: races
+    render conn, "rating.html", bicyclists: bicyclists, races: races, bicyclist_races: bicyclist_races
   end
 
   def rating_teams(conn, _params) do
-    teams = Team |> Repo.all |> Repo.preload([bicyclists: [:bicyclist_races]])
+    teams = Team |> Repo.all |> Repo.preload(bicyclists: [:bicyclist_races])
     races = Race |> Repo.all
     render conn, "rating_teams.html", teams: teams, races: races
   end

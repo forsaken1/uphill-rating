@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th rowspan="2"></th>
+      <th rowspan="2">Место</th>
       <th rowspan="2">Фамилия, Имя</th>
 
       <%= for race <- @races do %>
@@ -10,7 +10,6 @@
       <% end %>
 
       <th rowspan="2">Очки</th>
-      <th rowspan="2">Место</th>
     </tr>
 
     <tr>
@@ -23,22 +22,25 @@
   </thead>
 
   <tbody>
-    <% bicyclists = Enum.sort(@bicyclists, &(Enum.reduce(&1.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) > Enum.reduce(&2.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end))) %>
-
-    <%= for i <- 0..length(bicyclists) - 1 do %>
+    <%= for i <- 0..length(@bicyclists) - 1 do %>
+      <% bicyclist = Enum.at(@bicyclists, i) %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= Enum.at(bicyclists, i).name %></td>
+        <td><%= bicyclist.name %></td>
 
         <%= for race <- @races do %>
-          <% bicyclist_race = Enum.find(Enum.at(bicyclists, i).bicyclist_races, fn(x) -> x.race_id == race.id end ) %>
-          <td><%= if bicyclist_race do bicyclist_race.points end %></td>
-          <td><%= if bicyclist_race do UphillRating.Race.climb_coeff race.climb end %></td>
-          <td><%= if bicyclist_race do Float.round(bicyclist_race.result_points, 2) end %></td>
+          <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
+            <td><%= bicyclist_race.points %></td>
+            <td><%= UphillRating.Race.climb_coeff race.climb %></td>
+            <td><%= bicyclist_race.result_points %></td>
+          <% else %>
+            <td></td>
+            <td></td>
+            <td></td>
+          <% end %>
         <% end %>
 
-        <td><%= Float.round(Enum.reduce(Enum.at(bicyclists, i).bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end), 2) %></td>
-        <td><%= i + 1 %></td>
+        <td><%= bicyclist.points %></td>
       </tr>
     <% end %>
   </tbody>
