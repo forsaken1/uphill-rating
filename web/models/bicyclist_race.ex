@@ -9,6 +9,7 @@ defmodule UphillRating.BicyclistRace do
     field :result_points, :float
     belongs_to :bicyclist, UphillRating.Bicyclist
     belongs_to :race, UphillRating.Race
+    belongs_to :team, UphillRating.Team
 
     timestamps
   end

@@ -6,7 +6,9 @@ defmodule UphillRating.Repo.Migrations.CreateRace do
       add :name, :string
       add :information, :text
       add :climb, :integer
+      add :date, :date
       timestamps
     end
+    create index(:races, :name, unique: true)
   end
 end

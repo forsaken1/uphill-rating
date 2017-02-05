@@ -7,15 +7,17 @@ defmodule UphillRating.ExAdmin.Race do
   register_resource UphillRating.Race do
     index do
       selectable_column
-      column :id
       column :name
+      column :climb
+      column :date
     end
 
     form race do
       inputs do
         input race, :name
-        input race, :information, type: :text
+        input race, :date
         input race, :climb
+        input race, :information, type: :text
       end
     end
 

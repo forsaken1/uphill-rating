@@ -40,3 +40,5 @@ config :ex_admin,
   ]
 
 config :xain, :after_callback, {Phoenix.HTML, :raw}
+
+config :uphill_rating, ecto_repos: [UphillRating.Repo]

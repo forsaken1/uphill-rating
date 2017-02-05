@@ -2,6 +2,14 @@ defmodule UphillRating.ExAdmin.Bicyclist do
   use ExAdmin.Register
 
   register_resource UphillRating.Bicyclist do
+    index do
+      selectable_column
+      column :name
+      column :team
+      column :sex
+      column :year
+    end
+
     form bicycle do
       inputs do
         input bicycle, :name

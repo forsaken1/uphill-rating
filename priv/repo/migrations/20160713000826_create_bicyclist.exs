@@ -9,5 +9,6 @@ defmodule UphillRating.Repo.Migrations.CreateBicyclist do
       add :team_id, references(:teams, on_delete: :nothing)
       timestamps
     end
+    create index(:bicyclists, :name, unique: true)
   end
 end
