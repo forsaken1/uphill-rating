@@ -5,11 +5,12 @@ defmodule UphillRating.Race do
     field :name, :string
     field :information, :string
     field :climb, :integer
+    field :date, Ecto.Date
     has_many :bicyclist_races, UphillRating.BicyclistRace
     timestamps
   end
 
-  @required_fields ~w(name climb)
+  @required_fields ~w(name climb date)
   @optional_fields ~w()
 
   @doc """
