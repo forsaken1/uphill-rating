@@ -14,7 +14,7 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
 
     form bicyclist_race do
       inputs do
-        input bicyclist_race, :time, options: [sec: [] ]
+        input bicyclist_race, :time, options: [sec: [], usec: [options: usec_options]]
         input bicyclist_race, :bicyclist, collection: UphillRating.Repo.all(UphillRating.Bicyclist)
         input bicyclist_race, :race, collection: UphillRating.Repo.all(UphillRating.Race)
         input bicyclist_race, :team, collection: UphillRating.Repo.all(UphillRating.Team)
@@ -22,7 +22,13 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
     end
 
     query do
-      %{all: [preload: [:bicyclist, :race]]}
+      %{all: [preload: [:bicyclist, :race, :team]]}
+    end
+
+    defp usec_options do
+      Enum.to_list(0..99)
+      |> Enum.map(fn(i) -> {String.to_atom(Integer.to_string(i)), Integer.to_string(i) <> "0000"} end)
+      |> Keyword.new
     end
   end
 end
