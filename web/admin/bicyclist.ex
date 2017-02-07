@@ -19,6 +19,10 @@ defmodule UphillRating.ExAdmin.Bicyclist do
       end
     end
 
+    show bicyclist_race do
+      Phoenix.Controller.redirect conn, to: admin_resource_path(conn, :index)
+    end
+
     query do
       %{all: [preload: [:team]]}
     end
