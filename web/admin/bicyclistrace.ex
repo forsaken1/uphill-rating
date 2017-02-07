@@ -1,5 +1,7 @@
 defmodule UphillRating.ExAdmin.BicyclistRace do
   use ExAdmin.Register
+  alias UphillRating.Repo
+  alias UphillRating.Race
 
   register_resource UphillRating.BicyclistRace do
     index do
@@ -30,6 +32,16 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
 
     query do
       %{all: [preload: [:bicyclist, :race, :team]]}
+    end
+
+    controller do
+      after_filter :calculate, only: [:create, :update]
+    end
+
+    def calculate(conn, params, resource, _method) do
+      race = Repo.get! Race, resource.race_id
+      Calculate.calculate_points_for race
+      conn
     end
 
     defp usec_options do
