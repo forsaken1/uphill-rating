@@ -33,8 +33,8 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
     end
 
     defp usec_options do
-      Enum.to_list(0..99)
-      |> Enum.map(fn(i) -> {String.to_atom(Integer.to_string(i)), Integer.to_string(i) <> "0000"} end)
+      Enum.to_list(0..9)
+      |> Enum.map(fn(i) -> {String.to_atom(Integer.to_string(i)), Integer.to_string(i) <> "00000"} end)
       |> Keyword.new
     end
   end

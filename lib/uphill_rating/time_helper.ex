@@ -28,6 +28,6 @@ defmodule TimeHelper do
   end
 
   defp usec(t) do
-    round t.usec / 10000
+    round t.usec / 100000
   end
 end
