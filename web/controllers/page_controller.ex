@@ -3,8 +3,6 @@ defmodule UphillRating.PageController do
 
   import Ecto.Query
 
-  require IEx
-
   alias UphillRating.Team
   alias UphillRating.Race
   alias UphillRating.Bicyclist
