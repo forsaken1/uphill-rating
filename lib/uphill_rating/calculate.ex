@@ -8,22 +8,36 @@ defmodule Calculate do
   def calculate_points_for(race) do
     bicyclist_races = BicyclistRace
       |> BicyclistRace.for_race(race)
-      |> BicyclistRace.sorted
+      |> BicyclistRace.order_by_time
       |> Repo.all
 
     bicyclist_races_length = length(bicyclist_races)
 
     if bicyclist_races_length > 0 do
+      winner = Enum.at bicyclist_races, 0
+      
       for i <- 0..(bicyclist_races_length - 1) do
+        bicyclist_race = Enum.at bicyclist_races, i
         points = calculate_points(i, bicyclist_races_length)
+        {_, lag} = TimeHelper.diff(bicyclist_race.time, winner.time)
+
         Repo.update(
           BicyclistRace.changeset(
-            Enum.at(bicyclist_races, i),
-            %{place: i + 1, points: points, result_points: points * Race.climb_coeff(race.climb)}
+            bicyclist_race,
+            %{
+              place: i + 1,
+              points: points,
+              result_points: points * climb_coeff(race.climb),
+              lag: lag
+            }
           )
         )
       end
     end
+  end
+
+  def climb_coeff climb do # TODO
+    climb / 100.0
   end
 
   defp calculate_points i, count do

@@ -30,4 +30,31 @@ defmodule TimeHelper do
   defp usec(t) do
     round t.usec / 100000
   end
+
+  def diff(first, second) do
+    usec = first.usec - second.usec
+
+    sec = if usec < 0 do
+      usec = 10 + usec
+      first.sec - second.sec - 1
+    else
+      first.sec - second.sec
+    end
+
+    min = if sec < 0 do
+      sec = 60 + sec
+      first.min - second.min - 1
+    else
+      first.min - second.min
+    end
+
+    hour = if min < 0 do
+      min = 60 + min
+      first.hour - second.hour - 1
+    else
+      first.hour - second.hour
+    end
+
+    Ecto.Time.cast {hour, min, sec, usec}
+  end
 end

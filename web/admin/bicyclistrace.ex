@@ -13,7 +13,9 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
       column :time, fn(bicyclist_race) ->
         TimeHelper.time_with_mc bicyclist_race.time
       end
-      column :lag
+      column :lag, fn(bicyclist_race) ->
+        TimeHelper.time_with_mc bicyclist_race.lag
+      end
       actions [:edit, :delete]
     end
 

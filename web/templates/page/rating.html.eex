@@ -31,7 +31,7 @@
         <%= for race <- @races do %>
           <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
             <td><%= bicyclist_race.points %></td>
-            <td><%= UphillRating.Race.climb_coeff race.climb %></td>
+            <td><%= Calculate.climb_coeff race.climb %></td>
             <td><%= bicyclist_race.result_points %></td>
           <% else %>
             <td></td>

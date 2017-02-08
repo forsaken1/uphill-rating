@@ -15,7 +15,7 @@ defmodule UphillRating.BicyclistRace do
   end
 
   @required_fields ~w(time bicyclist_id race_id team_id)
-  @optional_fields ~w(place points result_points)
+  @optional_fields ~w(place lag points result_points)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -28,12 +28,12 @@ defmodule UphillRating.BicyclistRace do
     |> cast(params, @required_fields, @optional_fields)
   end
 
-  def sorted(query) do
+  def order_by_time(query) do
     from p in query,
     order_by: [asc: p.time]
   end
 
-  def ordered(query) do
+  def order_by_points(query) do
     from p in query,
     order_by: [desc: p.points]
   end
