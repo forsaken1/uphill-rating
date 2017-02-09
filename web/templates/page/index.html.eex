@@ -1,3 +1,10 @@
+<form action="/" method="GET">
+  <select name="year">
+    <option value="2017">2017</option>
+    <option value="2016">2016</option>
+  </select>
+</form>
+
 <%= for race <- @races do %>
   <h3><%= race.name %></h3>
   <pre><%= race.information %></pre>

@@ -8,8 +8,9 @@ defmodule UphillRating.PageController do
   alias UphillRating.Bicyclist
   alias UphillRating.BicyclistRace
 
-  def index(conn, _params) do
-    races = Race |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [bicyclist: :team])
+  def index(conn, params) do
+    year = Map.get(params, "year") || 2017
+    races = Race |> Race.by_year(year) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [bicyclist: :team])
     render conn, "index.html", races: races
   end
 

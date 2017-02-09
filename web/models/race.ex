@@ -23,4 +23,12 @@ defmodule UphillRating.Race do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def by_year(query, year) do
+    {_, date_from} = Ecto.Date.cast({year, 1, 1})
+    {_, date_to} = Ecto.Date.cast({year, 12, 31})
+
+    from r in query,
+    where: r.date >= ^date_from and r.date <= ^date_to
+  end
 end
