@@ -3,6 +3,8 @@ defmodule UphillRating.PageController do
 
   import Ecto.Query
 
+  require IEx
+
   alias UphillRating.Team
   alias UphillRating.Race
   alias UphillRating.Bicyclist
@@ -10,7 +12,9 @@ defmodule UphillRating.PageController do
 
   def index(conn, params) do
     races = Race |> Race.by_year(year(params)) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [bicyclist: :team])
-    render conn, "index.html", races: races
+    bicyclists = Bicyclist |> Repo.all
+    bicyclist_id = bicyclist_id(params)
+    render conn, "index.html", races: races, bicyclists: bicyclists, bicyclist_id: bicyclist_id
   end
 
   def rating(conn, _params) do
@@ -37,5 +41,9 @@ defmodule UphillRating.PageController do
 
   defp year(params) do
     filter(params) && Map.get(filter(params), "year") || 2016
+  end
+
+  defp bicyclist_id(params) do
+    filter(params) && Map.get(filter(params), "bicyclist_id")
   end
 end
