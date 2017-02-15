@@ -1,9 +1,7 @@
-<form action="/" method="GET">
-  <select name="year">
-    <option value="2017">2017</option>
-    <option value="2016">2016</option>
-  </select>
-</form>
+<%= form_for @conn, page_path(@conn, :index), [as: :filter, method: :get], fn f -> %>
+  <%= select f, :year, 2016..2017 %>
+  <%= submit "Фильтровать", [class: "btn btn-primary"] %>
+<% end %>
 
 <%= for race <- @races do %>
   <h3><%= race.name %></h3>

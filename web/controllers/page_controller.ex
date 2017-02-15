@@ -9,8 +9,7 @@ defmodule UphillRating.PageController do
   alias UphillRating.BicyclistRace
 
   def index(conn, params) do
-    year = Map.get(params, "year") || 2017
-    races = Race |> Race.by_year(year) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [bicyclist: :team])
+    races = Race |> Race.by_year(year(params)) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [bicyclist: :team])
     render conn, "index.html", races: races
   end
 
@@ -30,5 +29,13 @@ defmodule UphillRating.PageController do
     teams = Team |> Repo.all |> Repo.preload(bicyclists: [:bicyclist_races])
     races = Race |> Repo.all
     render conn, "rating_teams.html", teams: teams, races: races
+  end
+
+  defp filter(params) do
+    Map.get params, "filter"
+  end
+
+  defp year(params) do
+    filter(params) && Map.get(filter(params), "year") || 2016
   end
 end
