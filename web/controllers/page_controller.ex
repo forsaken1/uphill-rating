@@ -11,10 +11,10 @@ defmodule UphillRating.PageController do
   alias UphillRating.BicyclistRace
 
   def index(conn, params) do
-    races = Race |> Race.by_year(year(params)) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [bicyclist: :team])
+    races = Race |> Race.by_year(year(params)) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [:team, :bicyclist])
     bicyclists = Bicyclist |> Repo.all
-    bicyclist_id = bicyclist_id(params)
-    render conn, "index.html", races: races, bicyclists: bicyclists, bicyclist_id: bicyclist_id
+    teams = Team |> Repo.all
+    render conn, "index.html", races: races, bicyclists: bicyclists, teams: teams, bicyclist_id: bicyclist_id(params), team_id: team_id(params)
   end
 
   def rating(conn, _params) do
@@ -45,5 +45,9 @@ defmodule UphillRating.PageController do
 
   defp bicyclist_id(params) do
     filter(params) && Map.get(filter(params), "bicyclist_id")
+  end
+
+  defp team_id(params) do
+    filter(params) && Map.get(filter(params), "team_id")
   end
 end

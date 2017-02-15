@@ -1,6 +1,7 @@
 <%= form_for @conn, page_path(@conn, :index), [as: :filter, method: :get, class: "form-inline"], fn f -> %>
   <%= select f, :year, 2016..2017, [class: 'form-control'] %>
   <%= select f, :bicyclist_id, @bicyclists |> Enum.map(&{&1.name, &1.id}), [class: 'form-control', prompt: "Выберите спортсмена"] %>
+  <%= select f, :team_id, @teams |> Enum.map(&{&1.name, &1.id}), [class: 'form-control', prompt: "Выберите команду"] %>
   <%= submit "Фильтровать", [class: "btn btn-primary"] %>
 <% end %>
 
@@ -23,11 +24,11 @@
 
     <tbody>
       <%= for bicyclist_race <- race.bicyclist_races do %>
-        <%= if !@bicyclist_id || String.to_integer(@bicyclist_id) == bicyclist_race.bicyclist_id do %>
+        <%= if Filter.index(bicyclist_race, [bicyclist_id: @bicyclist_id, team_id: @team_id]) do %>
           <tr>
             <td><%= bicyclist_race.bicyclist.name %></td>
             <td><%= bicyclist_race.bicyclist.year %></td>
-            <td><%= bicyclist_race.bicyclist.team.name %></td>
+            <td><%= bicyclist_race.team.name %></td>
             <td><%= if bicyclist_race.bicyclist.sex == "Male" do "М" else "Ж" end %></td>
             <td><%= TimeHelper.time_with_mc bicyclist_race.time %></td>
             <td><%= TimeHelper.time_with_mc bicyclist_race.lag %></td>
