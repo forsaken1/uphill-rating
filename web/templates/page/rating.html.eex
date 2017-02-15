@@ -32,7 +32,7 @@
           <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
             <td><%= bicyclist_race.points %></td>
             <td><%= Calculate.climb_coeff race.climb %></td>
-            <td><%= bicyclist_race.result_points %></td>
+            <td><%= Float.round bicyclist_race.result_points, 2 %></td>
           <% else %>
             <td></td>
             <td></td>
@@ -40,7 +40,7 @@
           <% end %>
         <% end %>
 
-        <td><%= bicyclist.points %></td>
+        <td><%= Float.round bicyclist.points, 2 %></td>
       </tr>
     <% end %>
   </tbody>
