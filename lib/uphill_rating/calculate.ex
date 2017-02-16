@@ -44,12 +44,12 @@ defmodule Calculate do
     end
   end
 
-  defp calculate_points i, count do
-    if i > 20 do
-      step = 5.0 / count - 19
-      1 + step * (count - i)
+  def calculate_points position, count do
+    if position > 19 do
+      step = Float.round(abs(5.0 / (count - 19)), 2)
+      Float.round(1 + step * (count - position), 2)
     else
-      Enum.at @points, i
+      Enum.at @points, position
     end
   end
 end

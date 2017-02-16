@@ -15,4 +15,38 @@ defmodule UphillRating.CalculateTest do
     assert Calculate.climb_coeff(900) == 1.9
     assert Calculate.climb_coeff(999) == 1.9
   end
+
+  test "correct calculate_points" do
+    assert Calculate.calculate_points(0, 31) == 30
+    assert Calculate.calculate_points(1, 31) == 27
+    assert Calculate.calculate_points(2, 31) == 24
+    assert Calculate.calculate_points(3, 31) == 22
+    assert Calculate.calculate_points(4, 31) == 21
+    assert Calculate.calculate_points(5, 31) == 20
+    assert Calculate.calculate_points(6, 31) == 19
+    assert Calculate.calculate_points(7, 31) == 18
+    assert Calculate.calculate_points(8, 31) == 17
+    assert Calculate.calculate_points(9, 31) == 16
+    assert Calculate.calculate_points(10, 31) == 15
+    assert Calculate.calculate_points(11, 31) == 14
+    assert Calculate.calculate_points(12, 31) == 13
+    assert Calculate.calculate_points(13, 31) == 12
+    assert Calculate.calculate_points(14, 31) == 11
+    assert Calculate.calculate_points(15, 31) == 10
+    assert Calculate.calculate_points(16, 31) == 9
+    assert Calculate.calculate_points(17, 31) == 8
+    assert Calculate.calculate_points(18, 31) == 7
+    assert Calculate.calculate_points(19, 31) == 6
+    assert Calculate.calculate_points(20, 31) == 5.62
+    assert Calculate.calculate_points(21, 31) == 5.2
+    assert Calculate.calculate_points(22, 31) == 4.78
+    assert Calculate.calculate_points(23, 31) == 4.36
+    assert Calculate.calculate_points(24, 31) == 3.94
+    assert Calculate.calculate_points(25, 31) == 3.52
+    assert Calculate.calculate_points(26, 31) == 3.1
+    assert Calculate.calculate_points(27, 31) == 2.68
+    assert Calculate.calculate_points(28, 31) == 2.26
+    assert Calculate.calculate_points(29, 31) == 1.84
+    assert Calculate.calculate_points(30, 31) == 1.42
+  end
 end
