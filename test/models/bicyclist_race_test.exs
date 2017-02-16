@@ -3,7 +3,7 @@ defmodule UphillRating.BicyclistRaceTest do
 
   alias UphillRating.BicyclistRace
 
-  @valid_attrs %{lag: "14:00:00", place: 42, points: 42, time: "14:00:00"}
+  @valid_attrs %{lag: "14:00:00", place: 42, points: 42, time: "14:00:00", bicyclist_id: 1, race_id: 2, team_id: 3}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -11,7 +11,7 @@ defmodule UphillRating.Race do
   end
 
   @required_fields ~w(name climb date)
-  @optional_fields ~w()
+  @optional_fields ~w(information)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
