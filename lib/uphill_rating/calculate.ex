@@ -36,8 +36,12 @@ defmodule Calculate do
     end
   end
 
-  def climb_coeff climb do # TODO
-    climb / 100.0
+  def climb_coeff climb do
+    if climb < 100 do
+      Float.ceil((climb + 1) / 100.0, 1)
+    else
+      Float.floor(climb / 1000.0, 1) + 1
+    end
   end
 
   defp calculate_points i, count do
