@@ -35,6 +35,10 @@ defmodule UphillRating.PageController do
     render conn, "rating_teams.html", teams: teams, races: races
   end
 
+  def about(conn, _params) do
+    render conn, "about.html"
+  end
+
   defp filter(params) do
     Map.get params, "filter"
   end

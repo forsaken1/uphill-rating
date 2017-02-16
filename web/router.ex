@@ -20,6 +20,7 @@ defmodule UphillRating.Router do
     get "/", PageController, :index
     get "/rating", PageController, :rating
     get "/rating_teams", PageController, :rating_teams
+    get "/about", PageController, :about
   end
 
   # setup the ExAdmin routes on /admin

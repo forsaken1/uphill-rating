@@ -23,6 +23,7 @@
             <li class="<%= active_class(@conn, page_path(@conn, :index)) %>"><a href="<%= page_path(@conn, :index) %>">Результаты</a></li>
             <li class="<%= active_class(@conn, page_path(@conn, :rating)) %>"><a href="<%= page_path(@conn, :rating) %>">Рейтинг личный</a></li>
             <li class="<%= active_class(@conn, page_path(@conn, :rating_teams)) %>"><a href="<%= page_path(@conn, :rating_teams) %>">Рейтинг команд</a></li>
+            <li class="<%= active_class(@conn, page_path(@conn, :about)) %>"><a href="<%= page_path(@conn, :about) %>">О проекте</a></li>
           </ul>
         </div>
       </div>
