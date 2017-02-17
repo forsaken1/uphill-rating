@@ -5,49 +5,50 @@
   <%= submit "Фильтровать", [class: "btn btn-primary"] %>
 <% end %>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th rowspan="2">Место</th>
-      <th rowspan="2">Фамилия, Имя</th>
-
-      <%= for race <- @races do %>
-        <th colspan="3"><%= race.name %></th>
-      <% end %>
-
-      <th rowspan="2">Очки</th>
-    </tr>
-
-    <tr>
-      <%= for race <- @races do %>
-        <th>Очки</th>
-        <th>КΣ</th>
-        <th>итог</th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= for i <- 0..length(@bicyclists) - 1 do %>
-      <% bicyclist = Enum.at(@bicyclists, i) %>
+<%= if length(@bicyclists) > 0 do %>
+  <table class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= i + 1 %></td>
-        <td><%= bicyclist.name %></td>
+        <th rowspan="2">Место</th>
+        <th rowspan="2">Фамилия, Имя</th>
 
         <%= for race <- @races do %>
-          <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
-            <td><%= bicyclist_race.points %></td>
-            <td><%= Calculate.climb_coeff race.climb %></td>
-            <td><%= Float.round bicyclist_race.result_points, 2 %></td>
-          <% else %>
-            <td></td>
-            <td></td>
-            <td></td>
-          <% end %>
+          <th colspan="3"><%= race.name %></th>
         <% end %>
 
-        <td><%= Float.round bicyclist.points, 2 %></td>
+        <th rowspan="2">Очки</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+
+      <tr>
+        <%= for race <- @races do %>
+          <th>Очки</th>
+          <th>КΣ</th>
+          <th>итог</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= for {bicyclist, i} <- @bicyclists |> Enum.with_index do %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= bicyclist.name %></td>
+
+          <%= for race <- @races do %>
+            <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
+              <td><%= bicyclist_race.points %></td>
+              <td><%= Calculate.climb_coeff race.climb %></td>
+              <td><%= Float.round bicyclist_race.result_points, 2 %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+              <td></td>
+            <% end %>
+          <% end %>
+
+          <td><%= Float.round bicyclist.points, 2 %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

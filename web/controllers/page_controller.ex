@@ -18,13 +18,11 @@ defmodule UphillRating.PageController do
 
   def rating(conn, params) do
     year = year(params)
-    {_, from} = Ecto.Date.cast({year, 1, 1})
-    {_, to} = Ecto.Date.cast({year, 12, 31})
     bicyclists = Repo.all from b in Bicyclist,
       join: br in assoc(b, :bicyclist_races),
       join: r in assoc(br, :race),
       select: %{id: b.id, name: b.name, points: sum(br.result_points)},
-      where: r.date >= ^from and r.date <= ^to,
+      where: r.date >= ^date_from(year) and r.date <= ^date_to(year),
       group_by: b.id,
       order_by: [desc: sum(br.result_points)]
     bicyclist_ids = Enum.map bicyclists, fn (e) -> e[:id] end
@@ -57,5 +55,15 @@ defmodule UphillRating.PageController do
 
   defp team_id(params) do
     filter(params) && Map.get(filter(params), "team_id")
+  end
+
+  defp date_from(year) do
+    {_, from} = Ecto.Date.cast({year, 1, 1})
+    from
+  end
+
+  defp date_to(year) do
+    {_, to} = Ecto.Date.cast({year, 12, 31})
+    to
   end
 end
