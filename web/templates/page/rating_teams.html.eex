@@ -12,7 +12,7 @@
       <th rowspan="2">Фамилия, Имя</th>
 
       <%= for race <- @races do %>
-        <th colspan="3"><%= race.name %></th>
+        <th colspan="2"><%= race.name %> (<%= Calculate.climb_coeff race.climb %>)</th>
       <% end %>
 
       <th rowspan="2">Сумма очков</th>
@@ -22,7 +22,6 @@
     <tr>
       <%= for race <- @races do %>
         <th>Очки</th>
-        <th>КΣ</th>
         <th>итог</th>
       <% end %>
     </tr>
@@ -42,10 +41,8 @@
           <%= for race <- @races do %>
             <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
               <td><%= bicyclist_race.points %></td>
-              <td><%= Calculate.climb_coeff race.climb %></td>
               <td><%= Float.round bicyclist_race.result_points, 2 %></td>
             <% else %>
-              <td></td>
               <td></td>
               <td></td>
             <% end %>
