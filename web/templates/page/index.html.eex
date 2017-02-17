@@ -1,5 +1,7 @@
+<h1>Результаты</h1>
+
 <%= form_for @conn, page_path(@conn, :index), [as: :filter, method: :get, class: "form-inline"], fn f -> %>
-  <%= select f, :year, 2016..2017, [class: 'form-control'] %>
+  <%= select f, :year, 2014..2017, [class: 'form-control', selected: @year] %>
   <%= select f, :bicyclist_id, @bicyclists |> Enum.map(&{&1.name, &1.id}), [class: 'form-control', prompt: "Выберите спортсмена"] %>
   <%= select f, :team_id, @teams |> Enum.map(&{&1.name, &1.id}), [class: 'form-control', prompt: "Выберите команду"] %>
   <%= submit "Фильтровать", [class: "btn btn-primary"] %>

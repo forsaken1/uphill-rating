@@ -1,4 +1,10 @@
-<h3>Рейтинг</h3>
+<h1>Рейтинг личный</h1>
+
+<%= form_for @conn, page_path(@conn, :rating), [as: :filter, method: :get, class: "form-inline"], fn f -> %>
+  <%= select f, :year, 2014..2017, [class: 'form-control', selected: @year] %>
+  <%= submit "Фильтровать", [class: "btn btn-primary"] %>
+<% end %>
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
