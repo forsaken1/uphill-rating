@@ -4,6 +4,7 @@ defmodule UphillRating.Team do
   schema "teams" do
     field :name, :string
     has_many :bicyclists, UphillRating.Bicyclist
+    has_many :bicyclist_races, UphillRating.BicyclistRace
 
     timestamps()
   end

@@ -1,4 +1,10 @@
-<h3>Рейтинг команд</h3>
+<h1>Рейтинг команд</h1>
+
+<%= form_for @conn, page_path(@conn, :rating_teams), [as: :filter, method: :get, class: "form-inline"], fn f -> %>
+  <%= select f, :year, 2014..2017, [class: 'form-control', selected: @year] %>
+  <%= submit "Фильтровать", [class: "btn btn-primary"] %>
+<% end %>
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -23,27 +29,30 @@
   </thead>
 
   <tbody>
-    <% teams = Enum.sort(@teams, &(Enum.reduce(&1.bicyclists, 0, fn(item, ac) -> ac + Enum.reduce(item.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) end) > Enum.reduce(&2.bicyclists, 0, fn(item, ac) -> ac + Enum.reduce(item.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) end))) %>
+    <%= for {team, i} <- @teams |> Enum.with_index do %>
+      <tr><td colspan="100" align="center"><b><%= team.name %></b></td></tr>
 
-    <%= for i <- 0..length(teams) - 1 do %>
-      <tr><td colspan="100" align="center"><b><%= Enum.at(teams, i).name %></b></td></tr>
+      <% bicyclists = Enum.filter(@bicyclists, fn (b) -> b.team_id == team.id end) %>
 
-      <% bicyclists = Enum.sort(Enum.at(teams, i).bicyclists, &(Enum.reduce(&1.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) > Enum.reduce(&2.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end))) %>
-
-      <%= for j <- 0..length(bicyclists) - 1 do %>
+      <%= for {bicyclist, j} <- bicyclists |> Enum.with_index do %>
         <tr>
           <td><%= j + 1 %></td>
-          <td><%= Enum.at(bicyclists, j).name %></td>
+          <td><%= bicyclist.name %></td>
 
           <%= for race <- @races do %>
-            <% bicyclist_race = Enum.find(Enum.at(bicyclists, j).bicyclist_races, fn(x) -> x.race_id == race.id end ) %>
-            <td><%= if bicyclist_race do bicyclist_race.points end %></td>
-            <td><%= if bicyclist_race do Calculate.climb_coeff race.climb end %></td>
-            <td><%= if bicyclist_race do Float.round(bicyclist_race.result_points, 2) end %></td>
+            <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
+              <td><%= bicyclist_race.points %></td>
+              <td><%= Calculate.climb_coeff race.climb %></td>
+              <td><%= Float.round bicyclist_race.result_points, 2 %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+              <td></td>
+            <% end %>
           <% end %>
 
           <%= if j == 0 do %>
-            <td rowspan="<%= length(bicyclists) %>"><%= Enum.reduce(bicyclists, 0, fn(item, ac) -> ac + Enum.reduce(item.bicyclist_races, 0, fn(x, acc) -> x.result_points + acc end) end) %></td>
+            <td rowspan="<%= length(bicyclists) %>"><%= Float.round team.points, 2 %></td>
             <td rowspan="<%= length(bicyclists) %>"><%= i + 1 %></td>
           <% end %>
         </tr>
