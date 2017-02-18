@@ -1,4 +1,8 @@
-# UphillRating
+# Uphill rating
+
+This app is created for the community of Vladivostok cyclists.
+
+## Using
 
 To start your Phoenix app:
 
