@@ -6,8 +6,27 @@ defmodule UphillRating.ExAdmin.Dashboard do
     content do
       div ".blank_slate_container#dashboard_default_message" do
         span ".blank_slate" do
-          span "Welcome to ExAdmin. This is the default dashboard page."
-          small "To add dashboard sections, checkout 'web/admin/dashboards.ex'"
+          span "Welcome to ExAdmin."
+
+          div do
+            span "This is the default dashboard page."
+          end
+
+          div do
+            a "Add team", [href: "/admin/teams/new"]
+          end
+
+          div do
+            a "Add bicyclist", [href: "/admin/bicyclists/new"]
+          end
+
+          div do
+            a "Add race", [href: "/admin/races/new"]
+          end
+
+          div do
+            a "Add result", [href: "/admin/bicyclist_races/new"]
+          end
         end
       end
     end
