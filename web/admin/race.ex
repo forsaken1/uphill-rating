@@ -30,7 +30,7 @@ defmodule UphillRating.ExAdmin.Race do
       Calculate.calculate_points_for race
 
       Phoenix.Controller.put_flash(conn, :notice, "Calculation complete")
-      |> Phoenix.Controller.redirect to: admin_resource_path(conn, :index)
+      |> Phoenix.Controller.redirect(to: admin_resource_path(conn, :index))
     end
   end
 end
