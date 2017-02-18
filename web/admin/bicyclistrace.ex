@@ -40,6 +40,8 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
       after_filter :calculate, only: [:create, :update]
     end
 
+    filter [:bicyclist, :race, :place, :points]
+
     def calculate(conn, params, resource, _method) do
       race = Repo.get! Race, resource.race_id
       Calculate.calculate_points_for race

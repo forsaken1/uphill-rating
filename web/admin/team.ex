@@ -11,5 +11,7 @@ defmodule UphillRating.ExAdmin.Team do
     show bicyclist_race do
       Phoenix.Controller.redirect conn, to: admin_resource_path(conn, :index)
     end
+
+    filter [:name]
   end
 end

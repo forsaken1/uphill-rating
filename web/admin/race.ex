@@ -20,6 +20,8 @@ defmodule UphillRating.ExAdmin.Race do
       end
     end
 
+    filter [:name, :climb, :date]
+
     member_action :calculate, &__MODULE__.calculate_action/2
 
     def calculate_action conn, params do
