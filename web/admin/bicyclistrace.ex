@@ -36,11 +36,24 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
       %{all: [preload: [:bicyclist, :race, :team]]}
     end
 
+    filter [:bicyclist, :race, :place, :points]
+
     controller do
-      after_filter :calculate, only: [:create, :update]
+      after_filter :calculate, only: [:create, :update, :destroy]
     end
 
-    filter [:bicyclist, :race, :place, :points]
+    sidebar :Import do
+      form_tag("/admin/bicyclist_races/import", multipart: true) do
+        Phoenix.HTML.raw("
+          <div class=\"box-body\">
+            <input type=\"file\" name=\"import[file]\">
+          </div>
+          <div class=\"box-footer\">
+            <button class=\"btn btn-primary\" type=\"submit\">Import</button>
+          </div>
+        ")
+      end
+    end
 
     def calculate(conn, params, resource, _method) do
       race = Repo.get! Race, resource.race_id

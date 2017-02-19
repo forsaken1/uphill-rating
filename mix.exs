@@ -37,7 +37,8 @@ defmodule UphillRating.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:ex_admin, "~> 0.8"}]
+     {:ex_admin, "~> 0.8"},
+     {:csv, "~> 1.4.2"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

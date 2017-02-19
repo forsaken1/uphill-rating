@@ -1,6 +1,10 @@
 defmodule TimeHelper do
   def time_with_mc(t) do
-    "#{t |> hour}:#{t |> min}:#{t |> sec}.#{t |> usec}"
+    if t == nil do
+      nil
+    else
+      "#{t |> hour}:#{t |> min}:#{t |> sec}.#{t |> usec}"
+    end
   end
 
   defp hour(t) do
@@ -35,7 +39,7 @@ defmodule TimeHelper do
     usec = first.usec - second.usec
 
     sec = if usec < 0 do
-      usec = 10 + usec
+      usec = 1000000 + usec
       first.sec - second.sec - 1
     else
       first.sec - second.sec

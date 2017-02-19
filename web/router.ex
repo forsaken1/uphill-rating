@@ -29,6 +29,11 @@ defmodule UphillRating.Router do
     admin_routes
   end
 
+  scope "/admin", UphillRating do
+    pipe_through :browser
+    post "/bicyclist_races/import", AdminController, :import
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", UphillRating do
   #   pipe_through :api
