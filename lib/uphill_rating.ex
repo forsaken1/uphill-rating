@@ -6,7 +6,9 @@ defmodule UphillRating do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    UphillRating.Endpoint.start
+    if Mix.env == :prod do
+      UphillRating.Endpoint.start
+    end
 
     children = [
       # Start the endpoint when the application starts
