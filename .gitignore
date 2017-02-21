@@ -23,5 +23,5 @@ npm-debug.log
 # secrets file as long as you replace its contents by environment
 # variables.
 /config/prod.secret.exs
-web/static/assets
+/rel
 web/static/vendor
