@@ -6,6 +6,8 @@ defmodule UphillRating do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    UphillRating.Endpoint.start
+
     children = [
       # Start the endpoint when the application starts
       supervisor(UphillRating.Endpoint, []),

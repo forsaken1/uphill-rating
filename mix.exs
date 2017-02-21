@@ -38,7 +38,8 @@ defmodule UphillRating.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:ex_admin, "~> 0.8"},
-     {:csv, "~> 1.4.2"}]
+     {:csv, "~> 1.4.2"},
+     {:exrm, "1.0.8"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
