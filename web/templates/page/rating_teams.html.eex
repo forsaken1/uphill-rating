@@ -5,55 +5,57 @@
   <%= submit "Фильтровать", [class: "btn btn-primary"] %>
 <% end %>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th rowspan="2"></th>
-      <th rowspan="2">Фамилия, Имя</th>
+<%= if length(@teams) > 0 do %>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th rowspan="2"></th>
+        <th rowspan="2">Фамилия, Имя</th>
 
-      <%= for race <- @races do %>
-        <th colspan="2"><%= race.name %> (<%= Calculate.climb_coeff race.climb %>)</th>
-      <% end %>
+        <%= for race <- @races do %>
+          <th colspan="2"><%= race.name %> (<%= Calculate.climb_coeff race.climb %>)</th>
+        <% end %>
 
-      <th rowspan="2">Сумма очков</th>
-      <th rowspan="2">Место</th>
-    </tr>
+        <th rowspan="2">Сумма очков</th>
+        <th rowspan="2">Место</th>
+      </tr>
 
-    <tr>
-      <%= for race <- @races do %>
-        <th>Очки</th>
-        <th>итог</th>
-      <% end %>
-    </tr>
-  </thead>
+      <tr>
+        <%= for race <- @races do %>
+          <th>Очки</th>
+          <th>итог</th>
+        <% end %>
+      </tr>
+    </thead>
 
-  <tbody>
-    <%= for {team, i} <- @teams |> Enum.with_index do %>
-      <tr><td colspan="100" align="center"><b><%= team.name %></b></td></tr>
+    <tbody>
+      <%= for {team, i} <- @teams |> Enum.with_index do %>
+        <tr><td colspan="100" align="center"><b><%= team.name %></b></td></tr>
 
-      <% bicyclists = Enum.filter(@bicyclists, fn (b) -> b.team_id == team.id end) %>
+        <% bicyclists = Enum.filter(@bicyclists, fn (b) -> b.team_id == team.id end) %>
 
-      <%= for {bicyclist, j} <- bicyclists |> Enum.with_index do %>
-        <tr>
-          <td><%= j + 1 %></td>
-          <td><%= bicyclist.name %></td>
+        <%= for {bicyclist, j} <- bicyclists |> Enum.with_index do %>
+          <tr>
+            <td><%= j + 1 %></td>
+            <td><%= bicyclist.name %></td>
 
-          <%= for race <- @races do %>
-            <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
-              <td><%= bicyclist_race.points %></td>
-              <td><%= Float.round bicyclist_race.result_points, 2 %></td>
-            <% else %>
-              <td></td>
-              <td></td>
+            <%= for race <- @races do %>
+              <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>
+                <td><%= bicyclist_race.points %></td>
+                <td><%= Float.round bicyclist_race.result_points, 2 %></td>
+              <% else %>
+                <td></td>
+                <td></td>
+              <% end %>
             <% end %>
-          <% end %>
 
-          <%= if j == 0 do %>
-            <td rowspan="<%= length(bicyclists) %>"><%= Float.round team.points, 2 %></td>
-            <td rowspan="<%= length(bicyclists) %>"><%= i + 1 %></td>
-          <% end %>
-        </tr>
+            <%= if j == 0 do %>
+              <td rowspan="<%= length(bicyclists) %>"><%= Float.round team.points, 2 %></td>
+              <td rowspan="<%= length(bicyclists) %>"><%= i + 1 %></td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
