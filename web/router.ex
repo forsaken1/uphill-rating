@@ -10,10 +10,6 @@ defmodule UphillRating.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :basic_auth do
-    plug BasicAuth, use_config: {:basic_auth, :auth}
-  end
-
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -30,13 +26,11 @@ defmodule UphillRating.Router do
   # setup the ExAdmin routes on /admin
   scope "/admin", ExAdmin do
     pipe_through :browser
-    pipe_through :basic_auth
     admin_routes
   end
 
   scope "/admin", UphillRating do
     pipe_through :browser
-    pipe_through :basic_auth
     post "/bicyclist_races/import", AdminController, :import
   end
 

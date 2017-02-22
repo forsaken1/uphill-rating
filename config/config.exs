@@ -42,9 +42,3 @@ config :ex_admin,
 config :xain, :after_callback, {Phoenix.HTML, :raw}
 
 config :uphill_rating, ecto_repos: [UphillRating.Repo]
-
-config :basic_auth, auth: [
-  username: {:system, "BASIC_AUTH_USERNAME"},
-  password: {:system, "BASIC_AUTH_PASSWORD"},
-  realm: "Admin panel"
-]
