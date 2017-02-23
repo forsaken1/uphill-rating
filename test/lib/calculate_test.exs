@@ -37,16 +37,16 @@ defmodule UphillRating.CalculateTest do
     assert Calculate.calculate_points(17, 31) == 8
     assert Calculate.calculate_points(18, 31) == 7
     assert Calculate.calculate_points(19, 31) == 6
-    assert Calculate.calculate_points(20, 31) == 5.62
-    assert Calculate.calculate_points(21, 31) == 5.2
-    assert Calculate.calculate_points(22, 31) == 4.78
-    assert Calculate.calculate_points(23, 31) == 4.36
-    assert Calculate.calculate_points(24, 31) == 3.94
-    assert Calculate.calculate_points(25, 31) == 3.52
-    assert Calculate.calculate_points(26, 31) == 3.1
-    assert Calculate.calculate_points(27, 31) == 2.68
-    assert Calculate.calculate_points(28, 31) == 2.26
-    assert Calculate.calculate_points(29, 31) == 1.84
+    assert Calculate.calculate_points(20, 31) == 5.58
+    assert Calculate.calculate_points(21, 31) == 5.17
+    assert Calculate.calculate_points(22, 31) == 4.75
+    assert Calculate.calculate_points(23, 31) == 4.33
+    assert Calculate.calculate_points(24, 31) == 3.92
+    assert Calculate.calculate_points(25, 31) == 3.5
+    assert Calculate.calculate_points(26, 31) == 3.08
+    assert Calculate.calculate_points(27, 31) == 2.67
+    assert Calculate.calculate_points(28, 31) == 2.25
+    assert Calculate.calculate_points(29, 31) == 1.83
     assert Calculate.calculate_points(30, 31) == 1.42
   end
 end
