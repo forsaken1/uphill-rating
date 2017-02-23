@@ -4,7 +4,7 @@ defmodule UphillRating.BicyclistRace do
   schema "bicyclist_races" do
     field :time, Ecto.Time
     field :lag, Ecto.Time
-    field :points, :integer
+    field :points, :float
     field :place, :integer
     field :result_points, :float
     belongs_to :bicyclist, UphillRating.Bicyclist

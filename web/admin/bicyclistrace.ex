@@ -9,7 +9,13 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
       column :bicyclist
       column :race
       column :place
-      column :points
+      column :points, fn(bicyclist_race) ->
+        if is_float(bicyclist_race.points) do
+          bicyclist_race.points |> Float.round(2)
+        else
+          0.0
+        end |> Float.to_string decimals: 2
+      end
       column :time, fn(bicyclist_race) ->
         TimeHelper.time_with_mc bicyclist_race.time
       end
