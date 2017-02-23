@@ -10,7 +10,7 @@ defmodule UphillRating.PageController do
 
   def index(conn, params) do
     year = year(params)
-    races = Race |> Race.by_year(year) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [:team, :bicyclist])
+    races = Race |> Race.by_year(year) |> order_by(desc: :date) |> Repo.all |> Repo.preload(bicyclist_races: BicyclistRace.order_by_points(BicyclistRace), bicyclist_races: [:team, :bicyclist])
     bicyclists = Bicyclist |> Repo.all
     teams = Team |> Repo.all
     render conn, "index.html", races: races, bicyclists: bicyclists, teams: teams, year: year, bicyclist_id: bicyclist_id(params), team_id: team_id(params)
@@ -27,7 +27,7 @@ defmodule UphillRating.PageController do
       order_by: [desc: sum(br.result_points)]
     bicyclist_ids = Enum.map bicyclists, fn (e) -> e[:id] end
     bicyclist_races = BicyclistRace |> where([br], br.bicyclist_id in ^bicyclist_ids) |> Repo.all
-    races = Race |> Race.by_year(year) |> Repo.all
+    races = Race |> Race.by_year(year) |> order_by(asc: :date) |> Repo.all
     render conn, "rating.html", bicyclists: bicyclists, races: races, bicyclist_races: bicyclist_races, year: year
   end
 
@@ -44,7 +44,7 @@ defmodule UphillRating.PageController do
     bicyclist_races = BicyclistRace |> where([br], br.team_id in ^team_ids) |> Repo.all
     bicyclist_ids = Enum.map bicyclist_races, fn (e) -> e.bicyclist_id end
     bicyclists = Bicyclist |> where([b], b.id in ^bicyclist_ids) |> Repo.all
-    races = Race |> Race.by_year(year) |> Repo.all
+    races = Race |> Race.by_year(year) |> order_by(asc: :date) |> Repo.all
     render conn, "rating_teams.html", teams: teams, races: races, year: year, bicyclist_races: bicyclist_races, bicyclists: bicyclists
   end
 
