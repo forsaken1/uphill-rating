@@ -45,6 +45,7 @@ defmodule UphillRating.ExAdmin.BicyclistRace do
     sidebar :Import do
       form_tag("/admin/bicyclist_races/import", multipart: true) do
         Phoenix.HTML.raw("
+          <input type=\"hidden\" name=\"import[resource]\" value=\"BicyclistRace\">
           <div class=\"box-body\">
             <input type=\"file\" name=\"import[file]\">
           </div>

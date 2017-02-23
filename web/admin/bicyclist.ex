@@ -28,5 +28,19 @@ defmodule UphillRating.ExAdmin.Bicyclist do
     query do
       %{all: [preload: [:team]]}
     end
+
+    sidebar :Import do
+      form_tag("/admin/bicyclist_races/import", multipart: true) do
+        Phoenix.HTML.raw("
+          <input type=\"hidden\" name=\"import[resource]\" value=\"Bicyclist\">
+          <div class=\"box-body\">
+            <input type=\"file\" name=\"import[file]\">
+          </div>
+          <div class=\"box-footer\">
+            <button class=\"btn btn-primary\" type=\"submit\">Import</button>
+          </div>
+        ")
+      end
+    end
   end
 end
