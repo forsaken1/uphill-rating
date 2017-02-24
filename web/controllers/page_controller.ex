@@ -38,6 +38,7 @@ defmodule UphillRating.PageController do
       join: r in assoc(br, :race),
       select: %{id: t.id, name: t.name, points: sum(br.result_points)},
       where: r.date >= ^date_from(year) and r.date <= ^date_to(year),
+      where: t.name != "Лично",
       group_by: t.id,
       order_by: [desc: sum(br.result_points)]
     team_ids = Enum.map teams, fn (e) -> e[:id] end
