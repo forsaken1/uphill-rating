@@ -6,20 +6,26 @@ defmodule Import do
   alias UphillRating.Repo
 
   def process_file(resource, file_path) do
-    status = :ok
-    messages = []
     data = File.stream!(file_path)
     |> CSV.decode(separator: ?;)
     |> Enum.with_index
     |> Enum.map(fn {row, i} ->
       {st, obj, message} = process(resource, row)
-      if st != :ok do
-        status = :error
-        messages = [messages | "Error on line #{i + 1}: #{message}"]
-      end
-      obj
+      {st, obj, full_message(st, message, i)}
     end)
-    {status, data, messages}
+    {
+      (if data |> Enum.any?(fn e -> elem(e, 0) == :error end), do: :error, else: :ok),
+      data |> Enum.map(fn e -> elem e, 1 end),
+      data |> Enum.map(fn e -> elem e, 2 end)
+    }
+  end
+
+  defp full_message(status, message, i) do
+    if status != :ok do
+      "Error on line #{i + 1}: #{message}"
+    else
+      nil
+    end
   end
 
   defp process("BicyclistRace", row) do
