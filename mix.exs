@@ -32,12 +32,12 @@ defmodule UphillRating.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.2"},
      {:postgrex, ">= 0.12.0"},
-     {:phoenix_ecto, "~> 3.0.0"},
-     {:phoenix_html, "~> 2.5"},
+     {:phoenix_ecto, "~> 3.2"},
+     {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:ex_admin, "~> 0.8"},
+     {:ex_admin, github: 'forsaken1/ex_admin', branch: 'feature/usec'},
      {:csv, "~> 1.4.2"},
      {:exrm, "1.0.8"}]
   end
