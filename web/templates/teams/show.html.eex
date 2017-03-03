@@ -1,0 +1,29 @@
+<h1><%= @team.name %></h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Название</th>
+      <th>Команда</th>
+      <th>Время</th>
+      <th>Отставание</th>
+      <th>Очки</th>
+      <th>Место</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= for bicyclist_race <- @team.bicyclist_races do %>
+      <tr>
+        <td><%= bicyclist_race.race.date %></td>
+        <td><%= bicyclist_race.race.name %></td>
+        <td><%= bicyclist_race.bicyclist.name %></td>
+        <td><%= TimeHelper.time_with_mc bicyclist_race.time %></td>
+        <td><%= TimeHelper.time_with_mc bicyclist_race.lag %></td>
+        <td><%= bicyclist_race.points %></td>
+        <td><%= bicyclist_race.place %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

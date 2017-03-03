@@ -30,7 +30,7 @@
 
     <tbody>
       <%= for {team, i} <- @teams |> Enum.with_index do %>
-        <tr><td colspan="100" align="center"><b><%= team.name %></b></td></tr>
+        <tr><td colspan="100" align="center"><a href="<%= teams_path(@conn, :show, team.id) %>"><b><%= team.name %></b></a></td></tr>
 
         <% bicyclists = Enum.filter(@bicyclists, fn (b) -> b.team_id == team.id end) %>
 

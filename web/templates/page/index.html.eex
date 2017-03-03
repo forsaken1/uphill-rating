@@ -31,7 +31,7 @@
             <tr>
               <td><a href="<%= bicyclists_path(@conn, :show, bicyclist_race.bicyclist_id) %>"><%= bicyclist_race.bicyclist.name %></a></td>
               <td><%= bicyclist_race.bicyclist.year %></td>
-              <td><%= bicyclist_race.team.name %></td>
+              <td><a href="<%= teams_path(@conn, :show, bicyclist_race.team_id) %>"><%= bicyclist_race.team.name %></a></td>
               <td><%= if bicyclist_race.bicyclist.sex == "Male" do "М" else "Ж" end %></td>
               <td><%= TimeHelper.time_with_mc bicyclist_race.time %></td>
               <td><%= TimeHelper.time_with_mc bicyclist_race.lag %></td>
