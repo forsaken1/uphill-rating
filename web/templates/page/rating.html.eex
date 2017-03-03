@@ -31,7 +31,7 @@
       <%= for {bicyclist, i} <- @bicyclists |> Enum.with_index do %>
         <tr>
           <td><%= i + 1 %></td>
-          <td><%= bicyclist.name %></td>
+          <td><a href="<%= bicyclists_path(@conn, :show, bicyclist.id) %>"><%= bicyclist.name %></a></td>
 
           <%= for race <- @races do %>
             <%= if bicyclist_race = Enum.find(@bicyclist_races, nil, fn (br) -> br.bicyclist_id == bicyclist.id && br.race_id == race.id end) do %>

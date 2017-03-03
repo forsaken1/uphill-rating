@@ -29,7 +29,7 @@
         <%= for bicyclist_race <- race.bicyclist_races do %>
           <%= if Filter.index(bicyclist_race, [bicyclist_id: @bicyclist_id, team_id: @team_id]) do %>
             <tr>
-              <td><%= bicyclist_race.bicyclist.name %></td>
+              <td><a href="<%= bicyclists_path(@conn, :show, bicyclist_race.bicyclist_id) %>"><%= bicyclist_race.bicyclist.name %></a></td>
               <td><%= bicyclist_race.bicyclist.year %></td>
               <td><%= bicyclist_race.team.name %></td>
               <td><%= if bicyclist_race.bicyclist.sex == "Male" do "М" else "Ж" end %></td>
