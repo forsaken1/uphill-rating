@@ -31,6 +31,7 @@ config :phoenix, :generators,
 config :ex_admin,
   repo: UphillRating.Repo,
   module: UphillRating,
+  head_template: { UphillRating.AdminView, "admin_layout.html" },
   modules: [
     UphillRating.ExAdmin.Dashboard,
     UphillRating.ExAdmin.Team,

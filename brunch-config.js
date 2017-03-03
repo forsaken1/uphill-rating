@@ -11,6 +11,7 @@ exports.config = {
     },
     stylesheets: {
       joinTo: {
+        "css/admin_custom.css": ["web/static/css/admin_custom.css"],
         "css/app.css": /^(web\/static\/css)/,
         "css/admin_lte2.css": ["web/static/vendor/admin_lte2.css"],
         "css/active_admin.css": ["web/static/vendor/active_admin.css.css"],
