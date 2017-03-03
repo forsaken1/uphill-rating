@@ -1,5 +1,29 @@
 <h1><%= @team.name %></h1>
 
+<h3>Состав</h3>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Год</th>
+      <th>Пол</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= for bicyclist <- @team.bicyclists do %>
+      <tr>
+        <td><%= bicyclist.name %></td>
+        <td><%= bicyclist.year %></td>
+        <td><%= if bicyclist.sex == "Male" do "М" else "Ж" end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Результаты</h3>
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>

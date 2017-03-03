@@ -1,5 +1,7 @@
 <h1><%= @bicyclist.name %></h1>
 
+<h3>Результаты</h3>
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
