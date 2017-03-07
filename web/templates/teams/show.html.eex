@@ -14,7 +14,7 @@
   <tbody>
     <%= for bicyclist <- @team.bicyclists do %>
       <tr>
-        <td><%= bicyclist.name %></td>
+        <td><a href="<%= bicyclists_path(@conn, :show, bicyclist.id) %>"><%= bicyclist.name %></a></td>
         <td><%= bicyclist.year %></td>
         <td><%= if bicyclist.sex == "Male" do "М" else "Ж" end %></td>
       </tr>

@@ -24,4 +24,9 @@ defmodule UphillRating.Bicyclist do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def order_by_name(query) do
+    from b in query,
+    order_by: [asc: b.year]
+  end
 end
