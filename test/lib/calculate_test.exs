@@ -6,6 +6,7 @@ defmodule UphillRating.CalculateTest do
     assert Calculate.climb_coeff(10) == 0.2
     assert Calculate.climb_coeff(20) == 0.3
     assert Calculate.climb_coeff(30) == 0.4
+    assert Calculate.climb_coeff(89) == 0.9
     assert Calculate.climb_coeff(90) == 1.0
     assert Calculate.climb_coeff(99) == 1.0
     assert Calculate.climb_coeff(100) == 1.1

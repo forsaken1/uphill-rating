@@ -38,7 +38,7 @@ defmodule Calculate do
 
   def climb_coeff climb do
     if climb < 100 do
-      Float.ceil((climb + 1) / 100.0, 1)
+      Float.floor(climb / 100.0 + 0.1, 1)
     else
       Float.floor(climb / 1000.0, 1) + 1
     end
