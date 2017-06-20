@@ -18,6 +18,7 @@ defmodule UphillRating.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/results", PageController, :results
     get "/rating", PageController, :rating
     get "/rating_teams", PageController, :rating_teams
     get "/about", PageController, :about
