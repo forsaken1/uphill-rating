@@ -1,6 +1,6 @@
 # Uphill rating
 
-[![Build Status](https://travis-ci.org/forsaken1/uphill-rating.svg?branch=master)](https://travis-ci.org/forsaken1/uphill-rating.svg?branch=master)
+[![Build Status](https://travis-ci.org/forsaken1/uphill-rating.svg?branch=master)](https://travis-ci.org/forsaken1/uphill-rating)
 
 This app is created for the community of Vladivostok cyclists.
 
