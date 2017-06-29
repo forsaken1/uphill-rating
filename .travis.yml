@@ -8,3 +8,5 @@ services:
 before_script:
   - cp config/travis.exs config/test.exs
   - MIX_ENV=test mix do ecto.create, ecto.migrate
+env:
+  CODECLIMATE_REPO_TOKEN: afd01157a6769b016fbdbf656873d74d09d48561469f3ad841466277ba4ea19c
