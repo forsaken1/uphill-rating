@@ -25,3 +25,4 @@ npm-debug.log
 /config/prod.secret.exs
 /rel
 web/static/vendor
+/cover
